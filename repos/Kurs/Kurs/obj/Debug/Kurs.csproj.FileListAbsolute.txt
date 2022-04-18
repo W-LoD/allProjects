@@ -1,0 +1,5 @@
+C:\Users\dinas\source\repos\Kurs\Kurs\obj\Debug\Kurs.Form1.resources
+C:\Users\dinas\source\repos\Kurs\Kurs\obj\Debug\Kurs.Properties.Resources.resources
+C:\Users\dinas\source\repos\Kurs\Kurs\obj\Debug\Kurs.csproj.GenerateResource.cache
+C:\Users\dinas\source\repos\Kurs\Kurs\obj\Debug\Kurs.csproj.CoreCompileInputs.cache
+C:\Users\dinas\source\repos\Kurs\Kurs\obj\Debug\Kurs.csproj.AssemblyReference.cache

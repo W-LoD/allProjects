@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Kursovaya_ShDModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Magazin">
+          <Key>
+            <PropertyRef Name="Magazin_ID" />
+          </Key>
+          <Property Name="Magazin_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="M_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="M_adres" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pokupatel">
+          <Key>
+            <PropertyRef Name="Pokupatel_ID" />
+          </Key>
+          <Property Name="Pokupatel_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pok_FIO" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Pok_tel" Type="varchar" MaxLength="70" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pokupka">
+          <Key>
+            <PropertyRef Name="Pokupka_ID" />
+          </Key>
+          <Property Name="Pokupka_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_M" Type="int" Nullable="false" />
+          <Property Name="ID_S" Type="int" Nullable="false" />
+          <Property Name="ID_P" Type="int" Nullable="false" />
+          <Property Name="ID_T" Type="int" Nullable="false" />
+          <Property Name="Kolvo" Type="int" Nullable="false" />
+          <Property Name="ID_Pok" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Postavshik">
+          <Key>
+            <PropertyRef Name="Postavshik_ID" />
+          </Key>
+          <Property Name="Postavshik_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="P_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="P_FIO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="P_adres" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="P_tel" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sotrudnik">
+          <Key>
+            <PropertyRef Name="Sotrudnik_ID" />
+          </Key>
+          <Property Name="Sotrudnik_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="S_FIO" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="S_tel" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tovar">
+          <Key>
+            <PropertyRef Name="Tovar_ID" />
+          </Key>
+          <Property Name="Tovar_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="T_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="T_price" Type="float" Nullable="false" />
+          <Property Name="T_country" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="T_type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="T_brand" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="P_ID" Type="int" />
+        </EntityType>
+        <Association Name="FK__Tovar__P_ID__29572725">
+          <End Role="Postavshik" Type="Self.Postavshik" Multiplicity="0..1" />
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Postavshik">
+              <PropertyRef Name="Postavshik_ID" />
+            </Principal>
+            <Dependent Role="Tovar">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Покупка__ID_Мага__32E0915F">
+          <End Role="Magazin" Type="Self.Magazin" Multiplicity="1" />
+          <End Role="Pokupka" Type="Self.Pokupka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magazin">
+              <PropertyRef Name="Magazin_ID" />
+            </Principal>
+            <Dependent Role="Pokupka">
+              <PropertyRef Name="ID_M" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Покупка__ID_Поку__34C8D9D1">
+          <End Role="Pokupatel" Type="Self.Pokupatel" Multiplicity="1" />
+          <End Role="Pokupka" Type="Self.Pokupka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pokupatel">
+              <PropertyRef Name="Pokupatel_ID" />
+            </Principal>
+            <Dependent Role="Pokupka">
+              <PropertyRef Name="ID_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Покупка__ID_Сотр__33D4B598">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="1" />
+          <End Role="Pokupka" Type="Self.Pokupka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="Sotrudnik_ID" />
+            </Principal>
+            <Dependent Role="Pokupka">
+              <PropertyRef Name="ID_S" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Покупка__ID_Това__35BCFE0A">
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="1" />
+          <End Role="Pokupka" Type="Self.Pokupka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovar">
+              <PropertyRef Name="Tovar_ID" />
+            </Principal>
+            <Dependent Role="Pokupka">
+              <PropertyRef Name="ID_T" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Kursovaya_ShDModelContainer">
+          <EntitySet Name="Magazin" EntityType="Self.Magazin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pokupatel" EntityType="Self.Pokupatel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pokupka" EntityType="Self.Pokupka" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Postavshik" EntityType="Self.Postavshik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tovar" EntityType="Self.Tovar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Tovar__P_ID__29572725" Association="Self.FK__Tovar__P_ID__29572725">
+            <End Role="Postavshik" EntitySet="Postavshik" />
+            <End Role="Tovar" EntitySet="Tovar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Покупка__ID_Мага__32E0915F" Association="Self.FK__Покупка__ID_Мага__32E0915F">
+            <End Role="Magazin" EntitySet="Magazin" />
+            <End Role="Pokupka" EntitySet="Pokupka" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Покупка__ID_Поку__34C8D9D1" Association="Self.FK__Покупка__ID_Поку__34C8D9D1">
+            <End Role="Pokupatel" EntitySet="Pokupatel" />
+            <End Role="Pokupka" EntitySet="Pokupka" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Покупка__ID_Сотр__33D4B598" Association="Self.FK__Покупка__ID_Сотр__33D4B598">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Pokupka" EntitySet="Pokupka" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Покупка__ID_Това__35BCFE0A" Association="Self.FK__Покупка__ID_Това__35BCFE0A">
+            <End Role="Tovar" EntitySet="Tovar" />
+            <End Role="Pokupka" EntitySet="Pokupka" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Kursovaya_ShDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Magazin">
+          <Key>
+            <PropertyRef Name="Magazin_ID" />
+          </Key>
+          <Property Name="Magazin_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="M_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="M_adres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Pokupka" Relationship="Self.FK__Покупка__ID_Мага__32E0915F" FromRole="Magazin" ToRole="Pokupka" />
+        </EntityType>
+        <EntityType Name="Pokupatel">
+          <Key>
+            <PropertyRef Name="Pokupatel_ID" />
+          </Key>
+          <Property Name="Pokupatel_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pok_FIO" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pok_tel" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Pokupka" Relationship="Self.FK__Покупка__ID_Поку__34C8D9D1" FromRole="Pokupatel" ToRole="Pokupka" />
+        </EntityType>
+        <EntityType Name="Pokupka">
+          <Key>
+            <PropertyRef Name="Pokupka_ID" />
+          </Key>
+          <Property Name="Pokupka_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_M" Type="Int32" Nullable="false" />
+          <Property Name="ID_S" Type="Int32" Nullable="false" />
+          <Property Name="ID_P" Type="Int32" Nullable="false" />
+          <Property Name="ID_T" Type="Int32" Nullable="false" />
+          <Property Name="Kolvo" Type="Int32" Nullable="false" />
+          <Property Name="ID_Pok" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Magazin" Relationship="Self.FK__Покупка__ID_Мага__32E0915F" FromRole="Pokupka" ToRole="Magazin" />
+          <NavigationProperty Name="Pokupatel" Relationship="Self.FK__Покупка__ID_Поку__34C8D9D1" FromRole="Pokupka" ToRole="Pokupatel" />
+          <NavigationProperty Name="Sotrudnik" Relationship="Self.FK__Покупка__ID_Сотр__33D4B598" FromRole="Pokupka" ToRole="Sotrudnik" />
+          <NavigationProperty Name="Tovar" Relationship="Self.FK__Покупка__ID_Това__35BCFE0A" FromRole="Pokupka" ToRole="Tovar" />
+        </EntityType>
+        <EntityType Name="Postavshik">
+          <Key>
+            <PropertyRef Name="Postavshik_ID" />
+          </Key>
+          <Property Name="Postavshik_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="P_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="P_FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="P_adres" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="P_tel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tovar" Relationship="Self.FK__Tovar__P_ID__29572725" FromRole="Postavshik" ToRole="Tovar" />
+        </EntityType>
+        <EntityType Name="Sotrudnik">
+          <Key>
+            <PropertyRef Name="Sotrudnik_ID" />
+          </Key>
+          <Property Name="Sotrudnik_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="S_FIO" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="S_tel" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Pokupka" Relationship="Self.FK__Покупка__ID_Сотр__33D4B598" FromRole="Sotrudnik" ToRole="Pokupka" />
+        </EntityType>
+        <EntityType Name="Tovar">
+          <Key>
+            <PropertyRef Name="Tovar_ID" />
+          </Key>
+          <Property Name="Tovar_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="T_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="T_price" Type="Double" Nullable="false" />
+          <Property Name="T_country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="T_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="T_brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="P_ID" Type="Int32" />
+          <NavigationProperty Name="Pokupka" Relationship="Self.FK__Покупка__ID_Това__35BCFE0A" FromRole="Tovar" ToRole="Pokupka" />
+          <NavigationProperty Name="Postavshik" Relationship="Self.FK__Tovar__P_ID__29572725" FromRole="Tovar" ToRole="Postavshik" />
+        </EntityType>
+        <Association Name="FK__Покупка__ID_Мага__32E0915F">
+          <End Role="Magazin" Type="Self.Magazin" Multiplicity="1" />
+          <End Role="Pokupka" Type="Self.Pokupka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Magazin">
+              <PropertyRef Name="Magazin_ID" />
+            </Principal>
+            <Dependent Role="Pokupka">
+              <PropertyRef Name="ID_M" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Покупка__ID_Поку__34C8D9D1">
+          <End Role="Pokupatel" Type="Self.Pokupatel" Multiplicity="1" />
+          <End Role="Pokupka" Type="Self.Pokupka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pokupatel">
+              <PropertyRef Name="Pokupatel_ID" />
+            </Principal>
+            <Dependent Role="Pokupka">
+              <PropertyRef Name="ID_P" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Покупка__ID_Сотр__33D4B598">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="1" />
+          <End Role="Pokupka" Type="Self.Pokupka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="Sotrudnik_ID" />
+            </Principal>
+            <Dependent Role="Pokupka">
+              <PropertyRef Name="ID_S" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Покупка__ID_Това__35BCFE0A">
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="1" />
+          <End Role="Pokupka" Type="Self.Pokupka" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovar">
+              <PropertyRef Name="Tovar_ID" />
+            </Principal>
+            <Dependent Role="Pokupka">
+              <PropertyRef Name="ID_T" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tovar__P_ID__29572725">
+          <End Role="Postavshik" Type="Self.Postavshik" Multiplicity="0..1" />
+          <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Postavshik">
+              <PropertyRef Name="Postavshik_ID" />
+            </Principal>
+            <Dependent Role="Tovar">
+              <PropertyRef Name="P_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Kursovaya_ShDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Magazin" EntityType="Self.Magazin" />
+          <EntitySet Name="Pokupatel" EntityType="Self.Pokupatel" />
+          <EntitySet Name="Pokupka" EntityType="Self.Pokupka" />
+          <EntitySet Name="Postavshik" EntityType="Self.Postavshik" />
+          <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" />
+          <EntitySet Name="Tovar" EntityType="Self.Tovar" />
+          <AssociationSet Name="FK__Покупка__ID_Мага__32E0915F" Association="Self.FK__Покупка__ID_Мага__32E0915F">
+            <End Role="Magazin" EntitySet="Magazin" />
+            <End Role="Pokupka" EntitySet="Pokupka" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Покупка__ID_Поку__34C8D9D1" Association="Self.FK__Покупка__ID_Поку__34C8D9D1">
+            <End Role="Pokupatel" EntitySet="Pokupatel" />
+            <End Role="Pokupka" EntitySet="Pokupka" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Покупка__ID_Сотр__33D4B598" Association="Self.FK__Покупка__ID_Сотр__33D4B598">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Pokupka" EntitySet="Pokupka" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Покупка__ID_Това__35BCFE0A" Association="Self.FK__Покупка__ID_Това__35BCFE0A">
+            <End Role="Tovar" EntitySet="Tovar" />
+            <End Role="Pokupka" EntitySet="Pokupka" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tovar__P_ID__29572725" Association="Self.FK__Tovar__P_ID__29572725">
+            <End Role="Postavshik" EntitySet="Postavshik" />
+            <End Role="Tovar" EntitySet="Tovar" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Kursovaya_ShDModelContainer" CdmEntityContainer="Kursovaya_ShDEntities">
+          <EntitySetMapping Name="Magazin">
+            <EntityTypeMapping TypeName="Kursovaya_ShDModel.Magazin">
+              <MappingFragment StoreEntitySet="Magazin">
+                <ScalarProperty Name="Magazin_ID" ColumnName="Magazin_ID" />
+                <ScalarProperty Name="M_name" ColumnName="M_name" />
+                <ScalarProperty Name="M_adres" ColumnName="M_adres" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pokupatel">
+            <EntityTypeMapping TypeName="Kursovaya_ShDModel.Pokupatel">
+              <MappingFragment StoreEntitySet="Pokupatel">
+                <ScalarProperty Name="Pokupatel_ID" ColumnName="Pokupatel_ID" />
+                <ScalarProperty Name="Pok_FIO" ColumnName="Pok_FIO" />
+                <ScalarProperty Name="Pok_tel" ColumnName="Pok_tel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pokupka">
+            <EntityTypeMapping TypeName="Kursovaya_ShDModel.Pokupka">
+              <MappingFragment StoreEntitySet="Pokupka">
+                <ScalarProperty Name="Pokupka_ID" ColumnName="Pokupka_ID" />
+                <ScalarProperty Name="ID_M" ColumnName="ID_M" />
+                <ScalarProperty Name="ID_S" ColumnName="ID_S" />
+                <ScalarProperty Name="ID_P" ColumnName="ID_P" />
+                <ScalarProperty Name="ID_T" ColumnName="ID_T" />
+                <ScalarProperty Name="Kolvo" ColumnName="Kolvo" />
+                <ScalarProperty Name="ID_Pok" ColumnName="ID_Pok" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Postavshik">
+            <EntityTypeMapping TypeName="Kursovaya_ShDModel.Postavshik">
+              <MappingFragment StoreEntitySet="Postavshik">
+                <ScalarProperty Name="Postavshik_ID" ColumnName="Postavshik_ID" />
+                <ScalarProperty Name="P_name" ColumnName="P_name" />
+                <ScalarProperty Name="P_FIO" ColumnName="P_FIO" />
+                <ScalarProperty Name="P_adres" ColumnName="P_adres" />
+                <ScalarProperty Name="P_tel" ColumnName="P_tel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sotrudnik">
+            <EntityTypeMapping TypeName="Kursovaya_ShDModel.Sotrudnik">
+              <MappingFragment StoreEntitySet="Sotrudnik">
+                <ScalarProperty Name="Sotrudnik_ID" ColumnName="Sotrudnik_ID" />
+                <ScalarProperty Name="S_FIO" ColumnName="S_FIO" />
+                <ScalarProperty Name="S_tel" ColumnName="S_tel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tovar">
+            <EntityTypeMapping TypeName="Kursovaya_ShDModel.Tovar">
+              <MappingFragment StoreEntitySet="Tovar">
+                <ScalarProperty Name="Tovar_ID" ColumnName="Tovar_ID" />
+                <ScalarProperty Name="T_name" ColumnName="T_name" />
+                <ScalarProperty Name="T_price" ColumnName="T_price" />
+                <ScalarProperty Name="T_country" ColumnName="T_country" />
+                <ScalarProperty Name="T_type" ColumnName="T_type" />
+                <ScalarProperty Name="T_brand" ColumnName="T_brand" />
+                <ScalarProperty Name="P_ID" ColumnName="P_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\dinas\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\dinas\\.nuget\\packages"
+    ]
+  }
+}

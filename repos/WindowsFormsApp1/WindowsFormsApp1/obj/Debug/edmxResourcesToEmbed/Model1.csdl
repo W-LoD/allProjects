@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Kursovaya_ShDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Magazin">
+    <Key>
+      <PropertyRef Name="Magazin_ID" />
+    </Key>
+    <Property Name="Magazin_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="M_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="M_adres" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Pokupka" Relationship="Self.FK__Покупка__ID_Мага__32E0915F" FromRole="Magazin" ToRole="Pokupka" />
+  </EntityType>
+  <EntityType Name="Pokupatel">
+    <Key>
+      <PropertyRef Name="Pokupatel_ID" />
+    </Key>
+    <Property Name="Pokupatel_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Pok_FIO" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Pok_tel" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Pokupka" Relationship="Self.FK__Покупка__ID_Поку__34C8D9D1" FromRole="Pokupatel" ToRole="Pokupka" />
+  </EntityType>
+  <EntityType Name="Pokupka">
+    <Key>
+      <PropertyRef Name="Pokupka_ID" />
+    </Key>
+    <Property Name="Pokupka_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_M" Type="Int32" Nullable="false" />
+    <Property Name="ID_S" Type="Int32" Nullable="false" />
+    <Property Name="ID_P" Type="Int32" Nullable="false" />
+    <Property Name="ID_T" Type="Int32" Nullable="false" />
+    <Property Name="Kolvo" Type="Int32" Nullable="false" />
+    <Property Name="ID_Pok" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Magazin" Relationship="Self.FK__Покупка__ID_Мага__32E0915F" FromRole="Pokupka" ToRole="Magazin" />
+    <NavigationProperty Name="Pokupatel" Relationship="Self.FK__Покупка__ID_Поку__34C8D9D1" FromRole="Pokupka" ToRole="Pokupatel" />
+    <NavigationProperty Name="Sotrudnik" Relationship="Self.FK__Покупка__ID_Сотр__33D4B598" FromRole="Pokupka" ToRole="Sotrudnik" />
+    <NavigationProperty Name="Tovar" Relationship="Self.FK__Покупка__ID_Това__35BCFE0A" FromRole="Pokupka" ToRole="Tovar" />
+  </EntityType>
+  <EntityType Name="Postavshik">
+    <Key>
+      <PropertyRef Name="Postavshik_ID" />
+    </Key>
+    <Property Name="Postavshik_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="P_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="P_FIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="P_adres" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="P_tel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Tovar" Relationship="Self.FK__Tovar__P_ID__29572725" FromRole="Postavshik" ToRole="Tovar" />
+  </EntityType>
+  <EntityType Name="Sotrudnik">
+    <Key>
+      <PropertyRef Name="Sotrudnik_ID" />
+    </Key>
+    <Property Name="Sotrudnik_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="S_FIO" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="S_tel" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Pokupka" Relationship="Self.FK__Покупка__ID_Сотр__33D4B598" FromRole="Sotrudnik" ToRole="Pokupka" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tovar">
+    <Key>
+      <PropertyRef Name="Tovar_ID" />
+    </Key>
+    <Property Name="Tovar_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="T_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="T_price" Type="Double" Nullable="false" />
+    <Property Name="T_country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="T_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="T_brand" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="P_ID" Type="Int32" />
+    <NavigationProperty Name="Pokupka" Relationship="Self.FK__Покупка__ID_Това__35BCFE0A" FromRole="Tovar" ToRole="Pokupka" />
+    <NavigationProperty Name="Postavshik" Relationship="Self.FK__Tovar__P_ID__29572725" FromRole="Tovar" ToRole="Postavshik" />
+  </EntityType>
+  <Association Name="FK__Покупка__ID_Мага__32E0915F">
+    <End Role="Magazin" Type="Self.Magazin" Multiplicity="1" />
+    <End Role="Pokupka" Type="Self.Pokupka" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Magazin">
+        <PropertyRef Name="Magazin_ID" />
+      </Principal>
+      <Dependent Role="Pokupka">
+        <PropertyRef Name="ID_M" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Покупка__ID_Поку__34C8D9D1">
+    <End Role="Pokupatel" Type="Self.Pokupatel" Multiplicity="1" />
+    <End Role="Pokupka" Type="Self.Pokupka" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pokupatel">
+        <PropertyRef Name="Pokupatel_ID" />
+      </Principal>
+      <Dependent Role="Pokupka">
+        <PropertyRef Name="ID_P" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Покупка__ID_Сотр__33D4B598">
+    <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="1" />
+    <End Role="Pokupka" Type="Self.Pokupka" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sotrudnik">
+        <PropertyRef Name="Sotrudnik_ID" />
+      </Principal>
+      <Dependent Role="Pokupka">
+        <PropertyRef Name="ID_S" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Покупка__ID_Това__35BCFE0A">
+    <End Role="Tovar" Type="Self.Tovar" Multiplicity="1" />
+    <End Role="Pokupka" Type="Self.Pokupka" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tovar">
+        <PropertyRef Name="Tovar_ID" />
+      </Principal>
+      <Dependent Role="Pokupka">
+        <PropertyRef Name="ID_T" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tovar__P_ID__29572725">
+    <End Role="Postavshik" Type="Self.Postavshik" Multiplicity="0..1" />
+    <End Role="Tovar" Type="Self.Tovar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Postavshik">
+        <PropertyRef Name="Postavshik_ID" />
+      </Principal>
+      <Dependent Role="Tovar">
+        <PropertyRef Name="P_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Kursovaya_ShDEntities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Magazin" EntityType="Self.Magazin" />
+    <EntitySet Name="Pokupatel" EntityType="Self.Pokupatel" />
+    <EntitySet Name="Pokupka" EntityType="Self.Pokupka" />
+    <EntitySet Name="Postavshik" EntityType="Self.Postavshik" />
+    <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Tovar" EntityType="Self.Tovar" />
+    <AssociationSet Name="FK__Покупка__ID_Мага__32E0915F" Association="Self.FK__Покупка__ID_Мага__32E0915F">
+      <End Role="Magazin" EntitySet="Magazin" />
+      <End Role="Pokupka" EntitySet="Pokupka" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Покупка__ID_Поку__34C8D9D1" Association="Self.FK__Покупка__ID_Поку__34C8D9D1">
+      <End Role="Pokupatel" EntitySet="Pokupatel" />
+      <End Role="Pokupka" EntitySet="Pokupka" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Покупка__ID_Сотр__33D4B598" Association="Self.FK__Покупка__ID_Сотр__33D4B598">
+      <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+      <End Role="Pokupka" EntitySet="Pokupka" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Покупка__ID_Това__35BCFE0A" Association="Self.FK__Покупка__ID_Това__35BCFE0A">
+      <End Role="Tovar" EntitySet="Tovar" />
+      <End Role="Pokupka" EntitySet="Pokupka" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tovar__P_ID__29572725" Association="Self.FK__Tovar__P_ID__29572725">
+      <End Role="Postavshik" EntitySet="Postavshik" />
+      <End Role="Tovar" EntitySet="Tovar" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

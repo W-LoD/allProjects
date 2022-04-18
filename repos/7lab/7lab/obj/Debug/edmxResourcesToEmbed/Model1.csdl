@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Marks">
+    <Key>
+      <PropertyRef Name="Mark_ID" />
+    </Key>
+    <Property Name="Mark_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Geom" Type="Int16" Nullable="false" />
+    <Property Name="Geog" Type="Int16" Nullable="false" />
+    <Property Name="Himia" Type="Int16" Nullable="false" />
+    <Property Name="Matem" Type="Int16" Nullable="false" />
+    <Property Name="Russian" Type="Int16" Nullable="false" />
+    <Property Name="St_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Stud" Relationship="Self.FK_Marks_Stud" FromRole="Marks" ToRole="Stud" />
+  </EntityType>
+  <EntityType Name="Stud">
+    <Key>
+      <PropertyRef Name="St_ID" />
+    </Key>
+    <Property Name="St_ID" Type="Int32" Nullable="false" />
+    <Property Name="Name_St" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="Grupp" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Marks" Relationship="Self.FK_Marks_Stud" FromRole="Stud" ToRole="Marks" />
+  </EntityType>
+  <Association Name="FK_Marks_Stud">
+    <End Role="Stud" Type="Self.Stud" Multiplicity="1" />
+    <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stud">
+        <PropertyRef Name="St_ID" />
+      </Principal>
+      <Dependent Role="Marks">
+        <PropertyRef Name="St_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="StEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Marks" EntityType="Self.Marks" />
+    <EntitySet Name="Stud" EntityType="Self.Stud" />
+    <AssociationSet Name="FK_Marks_Stud" Association="Self.FK_Marks_Stud">
+      <End Role="Stud" EntitySet="Stud" />
+      <End Role="Marks" EntitySet="Marks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

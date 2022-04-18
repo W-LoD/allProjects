@@ -1,0 +1,15 @@
+C:\Users\dinas\source\repos\7lab\7lab\bin\Debug\7lab.exe.config
+C:\Users\dinas\source\repos\7lab\7lab\bin\Debug\7lab.exe
+C:\Users\dinas\source\repos\7lab\7lab\bin\Debug\7lab.pdb
+C:\Users\dinas\source\repos\7lab\7lab\bin\Debug\EntityFramework.dll
+C:\Users\dinas\source\repos\7lab\7lab\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\dinas\source\repos\7lab\7lab\bin\Debug\EntityFramework.xml
+C:\Users\dinas\source\repos\7lab\7lab\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\dinas\source\repos\7lab\7lab\obj\Debug\7lab.csproj.AssemblyReference.cache
+C:\Users\dinas\source\repos\7lab\7lab\obj\Debug\_7lab.Properties.Resources.resources
+C:\Users\dinas\source\repos\7lab\7lab\obj\Debug\7lab.csproj.GenerateResource.cache
+C:\Users\dinas\source\repos\7lab\7lab\obj\Debug\7lab.csproj.CoreCompileInputs.cache
+C:\Users\dinas\source\repos\7lab\7lab\obj\Debug\7lab.csproj.CopyComplete
+C:\Users\dinas\source\repos\7lab\7lab\obj\Debug\7lab.exe
+C:\Users\dinas\source\repos\7lab\7lab\obj\Debug\7lab.pdb
+C:\Users\dinas\source\repos\7lab\7lab\obj\Debug\_7lab.Add.resources

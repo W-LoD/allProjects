@@ -1,0 +1,11 @@
+C:\Users\dinas\source\repos\prakt\prakt\bin\Debug\prakt.exe.config
+C:\Users\dinas\source\repos\prakt\prakt\bin\Debug\prakt.exe
+C:\Users\dinas\source\repos\prakt\prakt\bin\Debug\prakt.pdb
+C:\Users\dinas\source\repos\prakt\prakt\obj\Debug\prakt.csproj.AssemblyReference.cache
+C:\Users\dinas\source\repos\prakt\prakt\obj\Debug\prakt.Properties.Resources.resources
+C:\Users\dinas\source\repos\prakt\prakt\obj\Debug\prakt.csproj.GenerateResource.cache
+C:\Users\dinas\source\repos\prakt\prakt\obj\Debug\prakt.csproj.CoreCompileInputs.cache
+C:\Users\dinas\source\repos\prakt\prakt\obj\Debug\prakt.exe
+C:\Users\dinas\source\repos\prakt\prakt\obj\Debug\prakt.pdb
+C:\Users\dinas\source\repos\prakt\prakt\obj\Debug\prakt.Choise.resources
+C:\Users\dinas\source\repos\prakt\prakt\obj\Debug\prakt.Main_form.resources

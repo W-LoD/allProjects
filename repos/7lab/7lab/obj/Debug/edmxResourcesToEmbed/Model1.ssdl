@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище StModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Marks">
+    <Key>
+      <PropertyRef Name="Mark_ID" />
+    </Key>
+    <Property Name="Mark_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Geom" Type="smallint" Nullable="false" />
+    <Property Name="Geog" Type="smallint" Nullable="false" />
+    <Property Name="Himia" Type="smallint" Nullable="false" />
+    <Property Name="Matem" Type="smallint" Nullable="false" />
+    <Property Name="Russian" Type="smallint" Nullable="false" />
+    <Property Name="St_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Stud">
+    <Key>
+      <PropertyRef Name="St_ID" />
+    </Key>
+    <Property Name="St_ID" Type="int" Nullable="false" />
+    <Property Name="Name_St" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="Grupp" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Marks_Stud">
+    <End Role="Stud" Type="Self.Stud" Multiplicity="1" />
+    <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stud">
+        <PropertyRef Name="St_ID" />
+      </Principal>
+      <Dependent Role="Marks">
+        <PropertyRef Name="St_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище StModelContainer">
+    <EntitySet Name="Marks" EntityType="Self.Marks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stud" EntityType="Self.Stud" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Marks_Stud" Association="Self.FK_Marks_Stud">
+      <End Role="Stud" EntitySet="Stud" />
+      <End Role="Marks" EntitySet="Marks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="29c1d9e83f7148339309e45c3a215ecd" Name="Diagram1">
+        <EntityTypeShape EntityType="Kursovaya_ShDModel.Magazin" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Kursovaya_ShDModel.Pokupatel" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Kursovaya_ShDModel.Pokupka" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Kursovaya_ShDModel.Postavshik" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Kursovaya_ShDModel.Sotrudnik" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Kursovaya_ShDModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Kursovaya_ShDModel.Tovar" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="Kursovaya_ShDModel.FK__Покупка__ID_Мага__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="Kursovaya_ShDModel.FK__Покупка__ID_Поку__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="Kursovaya_ShDModel.FK__Покупка__ID_Сотр__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="Kursovaya_ShDModel.FK__Покупка__ID_Това__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="Kursovaya_ShDModel.FK__Tovar__P_ID__29572725" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

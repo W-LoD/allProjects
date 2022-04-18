@@ -1,0 +1,6 @@
+﻿  ConsoleApplication2.cpp
+C:\Users\dinas\source\repos\ConsoleApplication2\ConsoleApplication2\ConsoleApplication2.cpp(1,1): warning C4005: __CLR_VER: изменение макроопределения
+C:\Users\dinas\source\repos\ConsoleApplication2\ConsoleApplication2\pch.cpp : message : см. предыдущее определение "__CLR_VER"
+C:\Users\dinas\source\repos\ConsoleApplication2\ConsoleApplication2\ConsoleApplication2.cpp(1,1): warning C4651: параметр "/D__CLR_VER=40804300" указан для предкомпилированного заголовка, но не для текущей компиляции
+  AssemblyInfo.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  ConsoleApplication2.vcxproj -> C:\Users\dinas\source\repos\ConsoleApplication2\Debug\ConsoleApplication2.exe

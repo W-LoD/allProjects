@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище StModelContainer" CdmEntityContainer="StEntities">
+    <EntitySetMapping Name="Marks">
+      <EntityTypeMapping TypeName="StModel.Marks">
+        <MappingFragment StoreEntitySet="Marks">
+          <ScalarProperty Name="Mark_ID" ColumnName="Mark_ID" />
+          <ScalarProperty Name="Geom" ColumnName="Geom" />
+          <ScalarProperty Name="Geog" ColumnName="Geog" />
+          <ScalarProperty Name="Himia" ColumnName="Himia" />
+          <ScalarProperty Name="Matem" ColumnName="Matem" />
+          <ScalarProperty Name="Russian" ColumnName="Russian" />
+          <ScalarProperty Name="St_ID" ColumnName="St_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stud">
+      <EntityTypeMapping TypeName="StModel.Stud">
+        <MappingFragment StoreEntitySet="Stud">
+          <ScalarProperty Name="St_ID" ColumnName="St_ID" />
+          <ScalarProperty Name="Name_St" ColumnName="Name_St" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Grupp" ColumnName="Grupp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

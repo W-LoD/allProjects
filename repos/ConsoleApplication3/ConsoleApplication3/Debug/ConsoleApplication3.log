@@ -1,0 +1,8 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppClean.targets(77,5): warning : Отказано в доступе по пути "c:\users\dinas\source\repos\consoleapplication3\debug\consoleapplication3.pdb".
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppClean.targets(77,5): warning : Отказано в доступе по пути "c:\users\dinas\source\repos\consoleapplication3\debug\consoleapplication3.exe".
+  pch.cpp
+  AssemblyInfo.cpp
+  ConsoleApplication3.cpp
+  Создание кода...
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+LINK : fatal error LNK1104: не удается открыть файл "C:\Users\dinas\source\repos\ConsoleApplication3\Debug\ConsoleApplication3.exe"
